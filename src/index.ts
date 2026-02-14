@@ -66,11 +66,18 @@ server.tool(
     listName: z.string(),
     title: z.string(),
     dueDate: z.string().optional(),
-    notes: z.string().optional()
+    notes: z.string().optional(),
+    priority: z
+      .number()
+      .int()
+      .min(0)
+      .max(9)
+      .optional()
+      .describe("Reminder priority where lower number means higher priority (1=high, 5=medium, 9=low, 0=none)")
   },
-  async ({ listName, title, dueDate, notes }) => {
+  async ({ listName, title, dueDate, notes, priority }) => {
     try {
-      const success = await reminders.createReminder(listName, title, dueDate, notes);
+      const success = await reminders.createReminder(listName, title, dueDate, notes, priority);
       return {
         content: [{ 
           type: "text", 

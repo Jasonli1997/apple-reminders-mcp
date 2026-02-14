@@ -65,6 +65,7 @@ Creates a new reminder.
   - `title` (required): The title of the reminder
   - `dueDate` (optional): The due date for the reminder (ISO format: "YYYY-MM-DDTHH:MM:SS.sssZ")
   - `notes` (optional): Notes for the reminder
+  - `priority` (optional): Reminder priority from `0` to `9`, where lower numbers are higher priority (`1` = high, `5` = medium, `9` = low, `0` = none)
 
 ### completeReminder
 Marks a reminder as completed.

@@ -65,7 +65,13 @@ export async function getRemindersFromList(listName: string): Promise<any[]> {
 /**
  * Create a new reminder
  */
-export async function createReminder(listName: string, title: string, dueDate?: string, notes?: string): Promise<boolean> {
+export async function createReminder(
+  listName: string,
+  title: string,
+  dueDate?: string,
+  notes?: string,
+  priority?: number
+): Promise<boolean> {
   try {
     // First get the list ID by name
     const lists = await reminders.getLists();
@@ -86,6 +92,10 @@ export async function createReminder(listName: string, title: string, dueDate?: 
     
     if (notes) {
       reminderData.body = notes;
+    }
+
+    if (priority !== undefined) {
+      reminderData.priority = priority;
     }
     
     // Create the reminder
